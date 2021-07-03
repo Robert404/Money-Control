@@ -10,10 +10,10 @@ import Foundation
 class Transaction: Codable {
     var sum: Double = 0
     var name: String = ""
-    var date: Date = Date()
+    var date: String = ""
     var type: String = ""
     
-    init(sum: Double, name: String, date: Date, type: String) {
+    init(sum: Double, name: String, date: String, type: String) {
         self.sum = sum
         self.name = name
         self.date = date

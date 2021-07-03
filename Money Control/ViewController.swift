@@ -46,10 +46,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return transactions.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    //to add new ViewController
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        table.deselectRow(at: indexPath, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TransactionTableViewCell
         cell.name.text = transactions[indexPath.row].name
-        cell.sum.text = String(transactions[indexPath.row].sum)
+        cell.sum.text = "$" + String(transactions[indexPath.row].sum)
+        cell.date.text = String(transactions[indexPath.row].date)
         return cell
     }
     
@@ -60,6 +70,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             saveItems()
         }
     }
+    
+//    private func calculateTotalMoney() {
+//        let totalMoney =
+//    }
     
     private func getItems() {
         guard

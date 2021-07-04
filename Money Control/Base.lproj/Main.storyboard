@@ -80,7 +80,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtO-q8-4GO">
-                                                <rect key="frame" x="22" y="77" width="298" height="35"/>
+                                                <rect key="frame" x="22" y="77" width="298" height="48"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="35"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -181,7 +181,7 @@
                         <outlet property="expenseSum" destination="Sr3-KC-Onj" id="01Q-Oj-Sft"/>
                         <outlet property="incomeSum" destination="nDK-yM-CeT" id="D2H-E8-vXG"/>
                         <outlet property="table" destination="gt0-H2-ZnG" id="aQi-PP-MXp"/>
-                        <outlet property="totalMoney" destination="BtO-q8-4GO" id="UQ5-FR-AH4"/>
+                        <outlet property="totalSum" destination="BtO-q8-4GO" id="wPM-k7-BVj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -241,6 +241,9 @@
                                     <segment title="EXPENSE"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" systemColor="systemPinkColor"/>
+                                <connections>
+                                    <action selector="didChangeSegment:" destination="xI4-Wc-p6o" eventType="valueChanged" id="8fl-fN-AUO"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrx-LQ-nLZ">
                                 <rect key="frame" x="204" y="226" width="95" height="33"/>

@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet var totalMoney: UILabel!
+    @IBOutlet var totalSum: UILabel!
     @IBOutlet var incomeSum: UILabel!
     @IBOutlet var expenseSum: UILabel!
     @IBOutlet var table: UITableView!
@@ -38,6 +38,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.transactions.append(transaction)
             self.table.isHidden = false
             self.saveItems()
+            self.calculateTotalMoney(transactionSum: transaction.sum, isExpence: transaction.isExpense)
         }
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -50,7 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 60
     }
     
-    //to add new ViewController
+    //to add TransactionViewController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
     }
@@ -63,18 +64,54 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    //TODO: Cleanup this method
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            transactions.remove(at: indexPath.row)
+            let totalMoney = totalSum.text?.replacingOccurrences(of: "$", with: "")
+            let incomeMoney = incomeSum.text?.replacingOccurrences(of: "$", with: "")
+            let expenseMoney = expenseSum.text?.replacingOccurrences(of: "$", with: "")
+            
+            let deletedTransition = transactions.remove(at: indexPath.row)
+            switch deletedTransition.isExpense {
+            case true:
+                let updatedTotal = Double(totalMoney!)! + deletedTransition.sum
+                let updatedExpence = Double(expenseMoney!)! - deletedTransition.sum
+                expenseSum.text! = "$" + String(updatedExpence)
+                totalSum.text! = "$" + String(updatedTotal)
+            case false:
+                let updatedTotal = Double(totalMoney!)! - deletedTransition.sum
+                let updatedIncome = Double(incomeMoney!)! - deletedTransition.sum
+                incomeSum.text! = "$" + String(updatedIncome)
+                totalSum.text! = "$" + String(updatedTotal)
+            }
             table.reloadData()
             saveItems()
         }
     }
     
-//    private func calculateTotalMoney() {
-//        let totalMoney =
-//    }
+    //TODO: cleanup this method
+    private func calculateTotalMoney(transactionSum: Double, isExpence: Bool) {
+        var updatedTotal = 0.0
+        var income = 0.0
+        var expense = 0.0
+
+        let totalMoney = totalSum.text?.replacingOccurrences(of: "$", with: "")
+        let incomeMoney = incomeSum.text?.replacingOccurrences(of: "$", with: "")
+        let expenseMoney = expenseSum.text?.replacingOccurrences(of: "$", with: "")
+
+        if isExpence {
+            updatedTotal = Double(totalMoney!)! - transactionSum
+            expense = Double(expenseMoney!)! + transactionSum
+            expenseSum.text = "$" + String(expense)
+        } else {
+            updatedTotal = Double(totalMoney!)! + transactionSum
+            income = Double(incomeMoney!)! + transactionSum
+            incomeSum.text = "$" + String(income)
+        }
+        totalSum.text = "$" + String(updatedTotal)
+    }
     
+    //TODO: cleanup
     private func getItems() {
         guard
             let data = UserDefaults.standard.data(forKey: "items"),
@@ -82,6 +119,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         else { return }
 
         self.transactions = savedItems
+        var income  = 0.0
+        var expense = 0.0
+        
+        for transaction in transactions {
+            switch transaction.isExpense {
+            case true:
+                expense += transaction.sum
+            case false:
+                income += transaction.sum
+            }
+        }
+        let totalBalance = income - expense
+        
+        incomeSum.text = (income == 0.0) ? "$0" : "$\(income)"
+        expenseSum.text = (expense == 0.0) ? "$0" : "$\(expense)"
+        totalSum.text = (totalBalance < 0) ? "ー$\(-totalBalance)" : "$\(totalBalance)"
     }
     
     private func saveItems() {

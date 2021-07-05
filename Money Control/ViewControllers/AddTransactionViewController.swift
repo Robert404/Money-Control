@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TransactionViewController: UIViewController {
+class AddTransactionViewController: UIViewController {
 
     @IBOutlet var name: UITextField!
     @IBOutlet var amount: UITextField!

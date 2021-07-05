@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet var totalSum: UILabel!
-    @IBOutlet var incomeSum: UILabel!
-    @IBOutlet var expenseSum: UILabel!
+    @IBOutlet var totalSumLabel: UILabel!
+    @IBOutlet var incomeLabel: UILabel!
+    @IBOutlet var expenseLabel: UILabel!
     @IBOutlet var table: UITableView!
     
     var transactions: [Transaction] = []
@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func addItem() {
-        guard let vc = storyboard?.instantiateViewController(identifier: "transactionVC") as? TransactionViewController else { return }
+        guard let vc = storyboard?.instantiateViewController(identifier: "transactionVC") as? AddTransactionViewController else { return }
         vc.title = "New Transaction"
         vc.navigationItem.largeTitleDisplayMode = .never
         vc.completion = { transaction in
@@ -51,7 +51,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 60
     }
     
-    //to add TransactionViewController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
     }
@@ -67,25 +66,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //TODO: Cleanup this method
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let totalMoney = totalSum.text?.replacingOccurrences(of: "$", with: "")
-            let incomeMoney = incomeSum.text?.replacingOccurrences(of: "$", with: "")
-            let expenseMoney = expenseSum.text?.replacingOccurrences(of: "$", with: "")
+            let totalMoney = totalSumLabel.text?.replacingOccurrences(of: "$", with: "")
+            let incomeMoney = incomeLabel.text?.replacingOccurrences(of: "$", with: "")
+            let expenseMoney = expenseLabel.text?.replacingOccurrences(of: "$", with: "")
             
             let deletedTransition = transactions.remove(at: indexPath.row)
             switch deletedTransition.isExpense {
             case true:
                 let updatedTotal = Double(totalMoney!)! + deletedTransition.sum
                 let updatedExpence = Double(expenseMoney!)! - deletedTransition.sum
-                expenseSum.text! = "$" + String(updatedExpence)
-                totalSum.text! = "$" + String(updatedTotal)
+                expenseLabel.text! = "$" + String(updatedExpence)
+                totalSumLabel.text! = "$" + String(updatedTotal)
             case false:
                 let updatedTotal = Double(totalMoney!)! - deletedTransition.sum
                 let updatedIncome = Double(incomeMoney!)! - deletedTransition.sum
-                incomeSum.text! = "$" + String(updatedIncome)
-                totalSum.text! = "$" + String(updatedTotal)
+                incomeLabel.text! = "$" + String(updatedIncome)
+                totalSumLabel.text! = "$" + String(updatedTotal)
             }
             table.reloadData()
             saveItems()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            
+        case "transactionScreen":
+            if let indexPath = table.indexPathForSelectedRow {
+                let destinationController = segue.destination as! TransactionViewController
+                destinationController.transaction = transactions[indexPath.row]
+            }
+        default:
+            break
         }
     }
     
@@ -95,20 +107,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         var income = 0.0
         var expense = 0.0
 
-        let totalMoney = totalSum.text?.replacingOccurrences(of: "$", with: "")
-        let incomeMoney = incomeSum.text?.replacingOccurrences(of: "$", with: "")
-        let expenseMoney = expenseSum.text?.replacingOccurrences(of: "$", with: "")
+        let totalMoney = totalSumLabel.text?.replacingOccurrences(of: "$", with: "")
+        let incomeMoney = incomeLabel.text?.replacingOccurrences(of: "$", with: "")
+        let expenseMoney = expenseLabel.text?.replacingOccurrences(of: "$", with: "")
 
         if isExpence {
             updatedTotal = Double(totalMoney!)! - transactionSum
             expense = Double(expenseMoney!)! + transactionSum
-            expenseSum.text = "$" + String(expense)
+            expenseLabel.text = "$" + String(expense)
         } else {
             updatedTotal = Double(totalMoney!)! + transactionSum
             income = Double(incomeMoney!)! + transactionSum
-            incomeSum.text = "$" + String(income)
+            incomeLabel.text = "$" + String(income)
         }
-        totalSum.text = "$" + String(updatedTotal)
+        totalSumLabel.text = "$" + String(updatedTotal)
     }
     
     //TODO: cleanup
@@ -132,9 +144,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         let totalBalance = income - expense
         
-        incomeSum.text = (income == 0.0) ? "$0" : "$\(income)"
-        expenseSum.text = (expense == 0.0) ? "$0" : "$\(expense)"
-        totalSum.text = (totalBalance < 0) ? "ー$\(-totalBalance)" : "$\(totalBalance)"
+        incomeLabel.text = (income == 0.0) ? "$0" : "$\(income)"
+        expenseLabel.text = (expense == 0.0) ? "$0" : "$\(expense)"
+        totalSumLabel.text = (totalBalance == 0.0) ? "$0" : "$\(totalBalance)"
     }
     
     private func saveItems() {

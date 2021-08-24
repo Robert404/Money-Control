@@ -22,6 +22,7 @@ class AddTransactionViewController: UIViewController {
         name.borderStyle = UITextField.BorderStyle.roundedRect
         amount.borderStyle = UITextField.BorderStyle.roundedRect
         date.borderStyle = UITextField.BorderStyle.roundedRect
+        saveBtn.layer.cornerRadius = 15
     }
     
     //TODO: Better alerts here

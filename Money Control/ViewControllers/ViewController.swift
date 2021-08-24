@@ -70,16 +70,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let incomeMoney = incomeLabel.text?.replacingOccurrences(of: "$", with: "")
             let expenseMoney = expenseLabel.text?.replacingOccurrences(of: "$", with: "")
             
-            let deletedTransition = transactions.remove(at: indexPath.row)
-            switch deletedTransition.isExpense {
+            let deletedTransaction = transactions.remove(at: indexPath.row)
+            switch deletedTransaction.isExpense {
             case true:
-                let updatedTotal = Double(totalMoney!)! + deletedTransition.sum
-                let updatedExpence = Double(expenseMoney!)! - deletedTransition.sum
+                let updatedTotal = Double(totalMoney!)! + deletedTransaction.sum
+                let updatedExpence = Double(expenseMoney!)! - deletedTransaction.sum
                 expenseLabel.text! = "$" + String(updatedExpence)
                 totalSumLabel.text! = "$" + String(updatedTotal)
             case false:
-                let updatedTotal = Double(totalMoney!)! - deletedTransition.sum
-                let updatedIncome = Double(incomeMoney!)! - deletedTransition.sum
+                let updatedTotal = Double(totalMoney!)! - deletedTransaction.sum
+                let updatedIncome = Double(incomeMoney!)! - deletedTransaction.sum
                 incomeLabel.text! = "$" + String(updatedIncome)
                 totalSumLabel.text! = "$" + String(updatedTotal)
             }
@@ -155,4 +155,3 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 }
-

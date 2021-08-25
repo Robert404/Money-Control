@@ -84,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A29A78726D6C5530099B5FC /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0A4D213D268A26EC00E7AA17 /* AppDelegate.swift */,
+				0A4D213F268A26EC00E7AA17 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		0A4D2131268A26EC00E7AA17 = {
 			isa = PBXGroup;
 			children = (
@@ -107,14 +116,11 @@
 		0A4D213C268A26EC00E7AA17 /* Money Control */ = {
 			isa = PBXGroup;
 			children = (
+				0A29A78726D6C5530099B5FC /* Application */,
 				0A4D216D268A4A2200E7AA17 /* Models */,
-				0A4D2170268A597400E7AA17 /* Views */,
 				0A98050C2692344B00E7EF9E /* ViewControllers */,
-				0A4D213D268A26EC00E7AA17 /* AppDelegate.swift */,
-				0A4D213F268A26EC00E7AA17 /* SceneDelegate.swift */,
-				0A4D2143268A26ED00E7AA17 /* Main.storyboard */,
+				0A4D2170268A597400E7AA17 /* Views */,
 				0A4D2146268A26EE00E7AA17 /* Assets.xcassets */,
-				0A4D2148268A26EE00E7AA17 /* LaunchScreen.storyboard */,
 				0A4D214B268A26EE00E7AA17 /* Info.plist */,
 			);
 			path = "Money Control";
@@ -150,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				0A4D2171268A59A600E7AA17 /* TransactionTableViewCell.swift */,
+				0A4D2143268A26ED00E7AA17 /* Main.storyboard */,
+				0A4D2148268A26EE00E7AA17 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";

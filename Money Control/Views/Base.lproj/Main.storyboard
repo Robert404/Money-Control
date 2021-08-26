@@ -344,7 +344,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.0" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y5y-tB-3kE">
-                                <rect key="frame" x="16" y="267" width="170" height="34"/>
+                                <rect key="frame" x="16" y="268" width="170" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -405,21 +405,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wX8-TE-Grg">
+                                <rect key="frame" x="0.0" y="327" width="390" height="216"/>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WVs-S5-A6R"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="WVs-S5-A6R" firstAttribute="trailing" secondItem="wX8-TE-Grg" secondAttribute="trailing" id="3Md-jL-cwS"/>
+                            <constraint firstItem="wX8-TE-Grg" firstAttribute="leading" secondItem="JoV-nW-e8L" secondAttribute="leading" id="Tye-NF-ff8"/>
                             <constraint firstItem="9jf-Z4-KlR" firstAttribute="leading" secondItem="WVs-S5-A6R" secondAttribute="leading" constant="103" id="Uhw-vm-SYI"/>
                             <constraint firstItem="WVs-S5-A6R" firstAttribute="bottom" secondItem="9jf-Z4-KlR" secondAttribute="bottom" constant="50" id="XZX-v2-7Al"/>
                             <constraint firstItem="WVs-S5-A6R" firstAttribute="trailing" secondItem="AHF-HI-3me" secondAttribute="trailing" constant="15" id="ZR6-fq-qiN"/>
                             <constraint firstItem="9jf-Z4-KlR" firstAttribute="top" secondItem="AHF-HI-3me" secondAttribute="bottom" constant="60" id="deH-aa-SCT"/>
                             <constraint firstItem="WVs-S5-A6R" firstAttribute="trailing" secondItem="9jf-Z4-KlR" secondAttribute="trailing" constant="103" id="fsq-WK-hFW"/>
                             <constraint firstItem="AHF-HI-3me" firstAttribute="leading" secondItem="WVs-S5-A6R" secondAttribute="leading" constant="15" id="jAH-rk-rmp"/>
+                            <constraint firstItem="AHF-HI-3me" firstAttribute="top" secondItem="wX8-TE-Grg" secondAttribute="bottom" constant="30" id="qY2-Sn-WVd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g48-3t-dv0"/>
                     <connections>
                         <outlet property="amount" destination="y5y-tB-3kE" id="P1X-Uh-Acs"/>
+                        <outlet property="categoryPicker" destination="wX8-TE-Grg" id="dXz-XW-x1U"/>
                         <outlet property="date" destination="2ty-mR-Drd" id="631-8X-7Br"/>
                         <outlet property="name" destination="MGK-lG-BCz" id="zw1-Sj-gHg"/>
                         <outlet property="saveBtn" destination="9jf-Z4-KlR" id="c51-YQ-4qc"/>

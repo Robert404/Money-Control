@@ -9,6 +9,9 @@ import UIKit
 
 class AddTransactionViewController: UIViewController {
 
+    @IBOutlet var categoryPicker: UIPickerView!
+    var pickerData: [String] = [String]()
+    
     @IBOutlet var name: UITextField!
     @IBOutlet var amount: UITextField!
     @IBOutlet var saveBtn: UIButton!
@@ -23,6 +26,11 @@ class AddTransactionViewController: UIViewController {
         amount.borderStyle = UITextField.BorderStyle.roundedRect
         date.borderStyle = UITextField.BorderStyle.roundedRect
         saveBtn.layer.cornerRadius = 15
+        
+        //Picker
+        pickerData = ["Food and Drinks", "Appartment", "Vehicle", "Entertainment", "Electronics", "Investments", "Other"]
+        self.categoryPicker.delegate = self
+        self.categoryPicker.dataSource = self
     }
     
     @IBAction func saveTransaction() {
@@ -71,5 +79,24 @@ class AddTransactionViewController: UIViewController {
         let alert = UIAlertController(title: titleOfAlert, message: messageOfAlert, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Gotcha", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+
+extension AddTransactionViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
     }
 }

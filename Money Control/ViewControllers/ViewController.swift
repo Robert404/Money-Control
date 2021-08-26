@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var incomeLabel: UILabel!
     @IBOutlet var expenseLabel: UILabel!
     @IBOutlet var table: UITableView!
-    
+
     var transactions: [Transaction] = []
     
     override func viewDidLoad() {
@@ -22,6 +22,9 @@ class ViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         getItems()
+        
+        //Reset all numbers if its new month
+        resetDataIfNewMonth()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +74,18 @@ class ViewController: UIViewController {
     private func saveItems() {
         if let encodedData = try? JSONEncoder().encode(transactions) {
             UserDefaults.standard.set(encodedData, forKey: "items")
+        }
+    }
+    
+    func resetDataIfNewMonth() {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d"
+        let dayOfTheMonth = dateFormatter.string(from: date)
+        
+        if dayOfTheMonth == "26" {
+            transactions.removeAll()
+            saveItems()
         }
     }
     

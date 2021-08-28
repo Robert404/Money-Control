@@ -14,6 +14,7 @@ class TransactionViewController: UIViewController {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var sumLabel: UILabel!
+    @IBOutlet var categoryLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -24,6 +25,7 @@ class TransactionViewController: UIViewController {
         nameLabel?.text = transaction.name
         dateLabel?.text = transaction.date
         sumLabel?.text = "$" + String(transaction.sum)
+        categoryLabel?.text = transaction.category
         view.frame = CGRect(x: 100, y: 100, width: 100, height: 50)
     }
 }

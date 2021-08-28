@@ -11,6 +11,7 @@ class AddTransactionViewController: UIViewController {
 
     @IBOutlet var categoryPicker: UIPickerView!
     var pickerData: [String] = [String]()
+    var choosedPickerCategory: String?
     
     @IBOutlet var name: UITextField!
     @IBOutlet var amount: UITextField!
@@ -19,6 +20,7 @@ class AddTransactionViewController: UIViewController {
     
     var completion: ((Transaction) -> Void)?
     var isExpense: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         name.becomeFirstResponder()
@@ -29,15 +31,15 @@ class AddTransactionViewController: UIViewController {
         
         //Picker
         pickerData = ["Food and Drinks", "Appartment", "Vehicle", "Entertainment", "Electronics", "Investments", "Other"]
-        self.categoryPicker.delegate = self
-        self.categoryPicker.dataSource = self
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
     }
     
     @IBAction func saveTransaction() {
         let amountDouble = Double(amount.text!)
         if !name.text!.isEmpty && amountDouble != 0 && !amount.text!.isEmpty
             && isDateValid(for: date.text!) {
-            let transaction = Transaction(sum: amountDouble ?? 0, name: name.text!, date: date.text!, type: "test", isExpense: self.isExpense)
+            let transaction = Transaction(sum: amountDouble ?? 0, name: name.text!, date: date.text!, isExpense: self.isExpense, category: choosedPickerCategory!)
             completion?(transaction)
             
         }
@@ -74,7 +76,7 @@ class AddTransactionViewController: UIViewController {
         }
         else {
             titleOfAlert = "Bruh"
-            messageOfAlert = "Fill every value in textfields"
+            messageOfAlert = "Fill every textfields with values"
         }
         let alert = UIAlertController(title: titleOfAlert, message: messageOfAlert, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Gotcha", style: .default, handler: nil))
@@ -97,6 +99,6 @@ extension AddTransactionViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        choosedPickerCategory = pickerData[row]
     }
 }

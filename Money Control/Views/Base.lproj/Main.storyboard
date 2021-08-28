@@ -9,6 +9,31 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Chart View Controller-->
+        <scene sceneID="WTF-WO-o5f">
+            <objects>
+                <viewController id="tOs-xJ-l9S" customClass="ChartViewController" customModule="Money_Control" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Oy4-AH-jVG">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eHe-Gb-x1s" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3zF-jd-Y1a"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="chart" destination="eHe-Gb-x1s" id="je3-Fz-BfO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k3M-hb-4Qi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130.76923076923077" y="92.417061611374407"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -200,6 +225,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iSh-rE-VTE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="QvZ-HI-rC4">
+                            <connections>
+                                <segue destination="tOs-xJ-l9S" kind="presentation" id="Wt5-i1-i1K"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XIa-X0-KSw">
                             <connections>
                                 <action selector="addItem" destination="BYZ-38-t0r" id="VcG-Pn-Nrv"/>
@@ -288,6 +318,13 @@
                                             <constraint firstAttribute="height" constant="1" id="RbA-qy-J0m"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igo-ln-qNC">
+                                        <rect key="frame" x="97" y="337" width="196" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -320,6 +357,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryLabel" destination="Igo-ln-qNC" id="DMa-ZP-PWQ"/>
                         <outlet property="dateLabel" destination="xLC-M8-Yl8" id="bb2-K8-8jw"/>
                         <outlet property="nameLabel" destination="lcc-a9-Gq6" id="vQy-rk-WmY"/>
                         <outlet property="sumLabel" destination="LN3-f6-Bsf" id="wkX-ba-ELF"/>
@@ -452,7 +490,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YxT-X2-UeL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
+            <point key="canvasLocation" x="945" y="-559"/>
         </scene>
     </scenes>
     <resources>

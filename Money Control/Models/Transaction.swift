@@ -12,11 +12,13 @@ class Transaction: Codable {
     var name: String = ""
     var date: String = ""
     var isExpense: Bool = true
+    var category = ""
     
-    init(sum: Double, name: String, date: String, type: String, isExpense: Bool) {
+    init(sum: Double, name: String, date: String, isExpense: Bool, category: String) {
         self.sum = sum
         self.name = name
         self.date = date
         self.isExpense = isExpense
+        self.category = category
     }
 }

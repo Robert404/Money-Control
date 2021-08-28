@@ -15,21 +15,20 @@ class ViewController: UIViewController {
     @IBOutlet var table: UITableView!
 
     var transactions: [Transaction] = []
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         table.delegate = self
         table.dataSource = self
         getItems()
-        
-        //Reset all numbers if its new month
+
         resetDataIfNewMonth()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.table.reloadData()
+        table.reloadData()
     }
     
     @IBAction func addItem() {
@@ -83,7 +82,7 @@ class ViewController: UIViewController {
         dateFormatter.dateFormat = "d"
         let dayOfTheMonth = dateFormatter.string(from: date)
         
-        if dayOfTheMonth == "26" {
+        if dayOfTheMonth == "1" {
             transactions.removeAll()
             saveItems()
         }
@@ -112,7 +111,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-            
+
         case "transactionScreen":
             if let indexPath = table.indexPathForSelectedRow {
                 let destinationController = segue.destination as! TransactionViewController
@@ -122,6 +121,7 @@ class ViewController: UIViewController {
             break
         }
     }
+    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {

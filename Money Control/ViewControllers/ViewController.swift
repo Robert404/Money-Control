@@ -13,18 +13,20 @@ class ViewController: UIViewController {
     @IBOutlet var incomeLabel: UILabel!
     @IBOutlet var expenseLabel: UILabel!
     @IBOutlet var table: UITableView!
-
+    
+    
     var transactions: [Transaction] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getItems()
         table.delegate = self
         table.dataSource = self
-        getItems()
 
         resetDataIfNewMonth()
     }
+    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -77,15 +79,18 @@ class ViewController: UIViewController {
     }
     
     func resetDataIfNewMonth() {
+        if getCurrentDay() == "1" {
+            transactions.removeAll()
+            saveItems()
+        }
+    }
+    
+    func getCurrentDay() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
         let dayOfTheMonth = dateFormatter.string(from: date)
-        
-        if dayOfTheMonth == "1" {
-            transactions.removeAll()
-            saveItems()
-        }
+        return dayOfTheMonth
     }
     
     private func calculateTotalMoney(transactionSum: Double, isExpence: Bool) {

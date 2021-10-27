@@ -1,0 +1,69 @@
+
+/* Class = "UITextField"; text = "01/01/2021"; ObjectID = "2ty-mR-Drd"; */
+"2ty-mR-Drd.text" = "01/01/2021";
+
+/* Class = "UILabel"; text = "date"; ObjectID = "4MI-Q6-h2E"; */
+"4MI-Q6-h2E.text" = "date";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "9jf-Z4-KlR"; */
+"9jf-Z4-KlR.normalTitle" = "Save";
+
+/* Class = "UISegmentedControl"; AHF-HI-3me.segmentTitles[0] = "INCOME"; ObjectID = "AHF-HI-3me"; */
+"AHF-HI-3me.segmentTitles[0]" = "INCOME";
+
+/* Class = "UISegmentedControl"; AHF-HI-3me.segmentTitles[1] = "EXPENSE"; ObjectID = "AHF-HI-3me"; */
+"AHF-HI-3me.segmentTitles[1]" = "EXPENSE";
+
+/* Class = "UILabel"; text = "$0"; ObjectID = "BtO-q8-4GO"; */
+"BtO-q8-4GO.text" = "$0";
+
+/* Class = "UILabel"; text = "Income"; ObjectID = "CFN-9A-2Rk"; */
+"CFN-9A-2Rk.text" = "Income";
+
+/* Class = "UILabel"; text = "Recent Transactions"; ObjectID = "DRX-wW-hA4"; */
+"DRX-wW-hA4.text" = "Recent Transactions";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "HSf-c7-Tx0"; */
+"HSf-c7-Tx0.text" = "Amount";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "Igo-ln-qNC"; */
+"Igo-ln-qNC.text" = "Category";
+
+/* Class = "UILabel"; text = "Cost"; ObjectID = "LN3-f6-Bsf"; */
+"LN3-f6-Bsf.text" = "Cost";
+
+/* Class = "UITextField"; placeholder = "Enter payment name..."; ObjectID = "MGK-lG-BCz"; */
+"MGK-lG-BCz.placeholder" = "Enter payment name...";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Mzl-yh-g9z"; */
+"Mzl-yh-g9z.text" = "Label";
+
+/* Class = "UILabel"; text = "Expense"; ObjectID = "S7o-Sc-Sc7"; */
+"S7o-Sc-Sc7.text" = "Expense";
+
+/* Class = "UILabel"; text = "$0"; ObjectID = "Sr3-KC-Onj"; */
+"Sr3-KC-Onj.text" = "$0";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "c5P-Pz-63A"; */
+"c5P-Pz-63A.text" = "Title";
+
+/* Class = "UILabel"; text = "Total balance"; ObjectID = "dmA-q1-as3"; */
+"dmA-q1-as3.text" = "Total balance";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "lcc-a9-Gq6"; */
+"lcc-a9-Gq6.text" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "mTC-yP-aaw"; */
+"mTC-yP-aaw.text" = "Label";
+
+/* Class = "UILabel"; text = "$0"; ObjectID = "nDK-yM-CeT"; */
+"nDK-yM-CeT.text" = "$0";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "qrx-LQ-nLZ"; */
+"qrx-LQ-nLZ.text" = "Date";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "xLC-M8-Yl8"; */
+"xLC-M8-Yl8.text" = "Date";
+
+/* Class = "UITextField"; text = "0.0"; ObjectID = "y5y-tB-3kE"; */
+"y5y-tB-3kE.text" = "0.0";

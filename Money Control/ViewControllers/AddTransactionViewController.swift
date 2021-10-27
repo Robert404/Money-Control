@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddTransactionViewController: UIViewController {
+class AddTransactionViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var categoryPicker: UIPickerView!
     var pickerData: [String] = [String]()
@@ -23,23 +23,28 @@ class AddTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        name.becomeFirstResponder()
         name.borderStyle = UITextField.BorderStyle.roundedRect
         amount.borderStyle = UITextField.BorderStyle.roundedRect
         date.borderStyle = UITextField.BorderStyle.roundedRect
         saveBtn.layer.cornerRadius = 15
         
+        name.delegate = self
+        date.delegate = self
+        
         //Picker
         pickerData = ["Food and Drinks", "Appartment", "Vehicle", "Entertainment", "Electronics", "Investments", "Other"]
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
+        
+        //Hide keyboard by tap
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func saveTransaction() {
         let amountDouble = Double(amount.text!)
         if !name.text!.isEmpty && amountDouble != 0 && !amount.text!.isEmpty
             && isDateValid(for: date.text!) {
-            let transaction = Transaction(sum: amountDouble ?? 0, name: name.text!, date: date.text!, isExpense: self.isExpense, category: choosedPickerCategory!)
+            let transaction = Transaction(sum: amountDouble ?? 0, name: name.text!, date: date.text!, isExpense: self.isExpense, category: choosedPickerCategory ?? "Other")
             completion?(transaction)
             
         }
@@ -82,6 +87,11 @@ class AddTransactionViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Gotcha", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
 
 
@@ -100,5 +110,18 @@ extension AddTransactionViewController: UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         choosedPickerCategory = pickerData[row]
+    }
+}
+
+
+extension AddTransactionViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(AddTransactionViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

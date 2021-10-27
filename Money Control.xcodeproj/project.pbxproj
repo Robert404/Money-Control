@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,10 +19,10 @@
 		0A4D216F268A4A4B00E7AA17 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D216E268A4A4B00E7AA17 /* Transaction.swift */; };
 		0A4D2172268A59A600E7AA17 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D2171268A59A600E7AA17 /* TransactionTableViewCell.swift */; };
 		0A4D2174268A5F8B00E7AA17 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D2173268A5F8B00E7AA17 /* AddTransactionViewController.swift */; };
+		0A700615272089AC00A6929E /* Pods_Money_Control.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE933C22B0355031B8A6445D /* Pods_Money_Control.framework */; };
 		0A98050E2692366900E7EF9E /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A98050D2692366900E7EF9E /* TransactionViewController.swift */; };
 		DA1877FF9ABB2FA64B42B85E /* Pods_Money_Control_Money_ControlUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821FAD8669F509CD173BBDAA /* Pods_Money_Control_Money_ControlUITests.framework */; };
 		EBDD908E17C1524AE9A70A0F /* Pods_Money_ControlTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A689C63E87A4E5298D6A04 /* Pods_Money_ControlTests.framework */; };
-		ECBAA535BA02749D91AA5C56 /* Pods_Money_Control.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE933C22B0355031B8A6445D /* Pods_Money_Control.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECBAA535BA02749D91AA5C56 /* Pods_Money_Control.framework in Frameworks */,
+				0A700615272089AC00A6929E /* Pods_Money_Control.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +202,6 @@
 				E7B51746B5744709028904A6 /* Pods-Money ControlTests.debug.xcconfig */,
 				BEC8454EFB6E518BD163A48F /* Pods-Money ControlTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
